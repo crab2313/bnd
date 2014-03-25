@@ -24,17 +24,31 @@ class Session:
         return self._request_maker.make_get(PCS_HEADER_URL, 'file', 'list',
                 {'path' : self._to_abs_path(path)})
 
+    def meta(self, path):
+        'obtain the meta data of a given file'
+        return self._request_maker.make_get(PCS_HEADER_URL, 'file', 'meta',
+                {'path' : self._to_abs_path(path)})
+
     def move(self, source, dest):
-        pass
+        'move a file from source to the destination'
+        return self._request_maker.make_post(PCS_HEADER_URL, 'file', 'move', {},
+                {'from' : self._to_abs_path(source), 
+                 'to'   : self._to_abs_path(dest)})
 
     def mkdir(self, path):
-        pass
+        'create a new directory'
+        return self._request_maker.make_post(PCS_HEADER_URL, 'file', 'mkdir',
+                {'path' : self._to_abs_path(path)})
 
     def quota(self):
+        'return the quota information of your netdisk'
         return self._request_maker.make_get(PCS_HEADER_URL, 'quota', 'info', {})
 
     def copy(self, source, dest):
-        pass
+        'copy a file or directory from the source to the destination'
+        return self._request_maker.make_post(PCS_HEADER_URL, 'file', 'copy', {},
+                {'from' : self._to_abs_path(source),
+                 'to'   : self._to_abs_path(dest)})
 
     # advanced operation provided by Baidu Netdisk
 
