@@ -37,8 +37,8 @@ class Session:
 
     def mkdir(self, path):
         'create a new directory'
-        return self._request_maker.make_post(PCS_HEADER_URL, 'file', 'mkdir',
-                {'path' : self._to_abs_path(path)})
+        return self._request_maker.make_post(PCS_HEADER_URL, 'file', 'mkdir', 
+                {'path' : self._to_abs_path(path)}, {})
 
     def quota(self):
         'return the quota information of your netdisk'
@@ -55,7 +55,7 @@ class Session:
     def offline_download(self):
         pass
 
-    # help function
+    # helper function
     def _to_abs_path(self, path):
         return '/'.join([self._fappdir, path])
 
