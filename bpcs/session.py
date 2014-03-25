@@ -21,7 +21,8 @@ class Session:
     
     # file related operations
     def list(self, path):
-        pass
+        return self._request_maker.make_get(PCS_HEADER_URL, 'file', 'list',
+                {'path' : self._to_abs_path(path)})
 
     def move(self, source, dest):
         pass
@@ -39,6 +40,10 @@ class Session:
 
     def offline_download(self):
         pass
+
+    # help function
+    def _to_abs_path(self, path):
+        return '/'.join([self._fappdir, path])
 
 
 class RequestMaker:
